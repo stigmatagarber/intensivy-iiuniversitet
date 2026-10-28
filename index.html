@@ -112,6 +112,11 @@ h2 em{text-transform:none;font-style:italic}
 .sched .what p{font-size:14px;color:var(--muted)}
 .sched .what .res{display:inline-block;margin-top:6px;font-size:13px;font-weight:600;background:var(--lemon);border-radius:8px;padding:2px 8px}
 .sched .what .tariff{display:inline-block;margin-top:6px;font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:8px;padding:1px 8px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:-2px 0 12px}
+.t-all,.t-sup{display:inline-block;margin-top:6px;margin-right:6px;font-size:12px;font-weight:600;border-radius:8px;padding:2px 9px;line-height:1.5}
+.legend .t-all,.legend .t-sup{margin-top:0}
+.t-all{background:var(--bg);color:var(--ink)}
+.t-sup{background:var(--ink);color:#fff}
 .sched li.key{background:linear-gradient(90deg,rgba(255,226,0,.14),transparent 70%)}
 .results{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px}
 @media (max-width:640px){.results{grid-template-columns:1fr}}
@@ -156,6 +161,8 @@ h2 em{text-transform:none;font-style:italic}
 .item h3{font-size:18px;line-height:1.2;margin-bottom:2px}
 .item p{font-size:14px;color:var(--muted)}
 .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--bg);border-radius:16px;padding:5px;margin-top:12px}
+.seg-note{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.45}
+.seg-note b{color:var(--ink);font-weight:600}
 .seg button{border-radius:12px;padding:9px 6px;font-size:14px;font-weight:600;line-height:1.2;text-align:center}
 .seg button small{display:block;font-weight:500;font-size:12px;color:var(--muted);margin-top:2px}
 .seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
@@ -296,7 +303,7 @@ h2 em{text-transform:none;font-style:italic}
     <div class="idea">
       <div><b>Уроки</b><p>Видеоуроки курса «Нейропродюсер» по теме недели. Смотрите в своём темпе, когда удобно.</p></div>
       <div><b>Практикум</b><p>Три часа в прямом эфире с Павлом Лебедевым. Делаете результат на своей задаче, а Павел отвечает на вопросы и помогает довести до конца.</p></div>
-      <div><b>Куратор</b><p>Встречи с куратором и чат в мини-группе. Помогают подключить нейросети и доделать то, что начали на практикуме.</p></div>
+      <div><b>Куратор</b><p>Встречи с куратором и чат в мини-группе. Помогают подключить нейросети и доделать то, что начали на практикуме. Есть в тарифах «Неделя с поддержкой» и «Все практикумы».</p></div>
     </div>
   </div>
 </section>
@@ -385,7 +392,7 @@ h2 em{text-transform:none;font-style:italic}
         <h3>Итого</h3>
         <ul class="sum-lines" id="lines"></ul>
         <div class="sum-total">
-          <div><small>К оплате</small><b id="total">0 руб.</b></div>
+          <div><small>К оплате</small><b id="total">0&nbsp;₽</b></div>
           <div class="sum-old" id="totalOld"></div>
         </div>
         <div class="sum-save" id="sumSave"></div>
@@ -401,7 +408,7 @@ h2 em{text-transform:none;font-style:italic}
   <div class="wrap">
     <h2>Вопросы</h2>
     <div class="faq">
-      <details><summary>Что такое интенсив?</summary><p>Это неделя прокачки в одной теме ИИ. В понедельник кураторы помогают подключиться к нейросетям, во вторник три часа практикума в прямом эфире с Павлом Лебедевым, в четверг встреча с куратором в мини-группе. Всю неделю у вас есть видеоуроки по теме и чат участников.</p></details>
+      <details><summary>Что такое интенсив?</summary><p>Это неделя прокачки в одной теме ИИ. Во всех тарифах: трёхчасовой практикум с Павлом Лебедевым в прямом эфире во вторник, видеоуроки по теме и запись практикума. В тарифах «Неделя с поддержкой» и «Все практикумы» добавляются встреча с кураторами в понедельник, встреча с куратором в мини-группе в четверг, чат мини-группы с куратором и нейрокуратор.</p></details>
       <details><summary>Как считается скидка за количество?</summary><p id="faqTiers"></p></details>
       <details><summary>Будет ли запись и сколько длится доступ?</summary><p>Запись и видеоуроки есть во всех форматах. Доступ на 3 месяца в формате «Я сам» и на 6 месяцев в форматах «Неделя с поддержкой» и «Все практикумы».</p></details>
       <details><summary>Нужно ли уметь программировать?</summary><p>Нет. Скиллы пишутся обычными словами, агенты и приложения собираются по шагам на практикуме. Нужны только компьютер и рабочая задача, на которой хотите получить результат.</p></details>
@@ -497,7 +504,7 @@ h2 em{text-transform:none;font-style:italic}
 </footer>
 
 <div class="bar" id="bar">
-  <div><small id="barCount">В наборе</small><b id="barTotal">0 руб.</b></div>
+  <div><small id="barCount">В наборе</small><b id="barTotal">0&nbsp;₽</b></div>
   <a class="btn btn-yellow" href="#calc">К расчёту</a>
 </div>
 
@@ -571,7 +578,7 @@ const CONFIG = {
 /* ========================================================================== */
 
 const P = CONFIG.prices, N = CONFIG.intensives.length;
-const fmt = n => Math.round(n).toLocaleString("ru-RU").replace(/ /g, " ") + " руб.";
+const fmt = n => Math.round(n).toLocaleString("ru-RU").replace(/\s/g, "\u00a0") + "\u00a0₽";
 const abs = u => IMG[u] || (u.startsWith("http") ? u : CONFIG.site + u);
 const tierPct = c => { let p = 0; for (const k in CONFIG.tiers) if (c >= +k) p = CONFIG.tiers[k]; return p; };
 const cPrice = c => Math.round(c.price * (100 - CONFIG.courseDiscount) / 100 / 10) * 10;
@@ -599,15 +606,20 @@ document.getElementById("stories").innerHTML = CONFIG.intensives.map((i, n) => `
       <p class="story-sub">${i.sub}</p>
       <p class="story-lead">${i.story}</p>
       <div class="label">Что входит в неделю</div>
+      <div class="legend"><span class="t-all">Во всех тарифах</span><span class="t-sup">Только «Неделя с поддержкой» и «Все практикумы»</span></div>
       <ul class="sched">
         <li><div class="when"><b>Понедельник</b><span>${i.dates.mon || CONFIG.tbd}</span></div>
-          <div class="what"><b>Встреча с кураторами</b><p>Кураторы помогают подключиться к нейросетям, чтобы ко вторнику всё работало.</p><span class="tariff">в тарифах с поддержкой</span></div></li>
+          <div class="what"><b>Встреча с кураторами</b><p>Кураторы помогают подключиться к нейросетям, чтобы ко вторнику всё работало.</p><span class="t-sup">С поддержкой</span></div></li>
         <li class="key"><div class="when"><b>Вторник</b><span>${i.dates.tue || CONFIG.tbd}</span></div>
-          <div class="what"><b>Практикум с Павлом Лебедевым, 3 часа</b><p>Прямой эфир: Павел ведёт практикум, отвечает на вопросы, решает задачи и помогает довести результат до конца.</p><span class="res">Результат: ${i.practicum.replace(/\.$/, "")}</span></div></li>
+          <div class="what"><b>Практикум с Павлом Лебедевым, 3 часа</b><p>Прямой эфир: Павел ведёт практикум, отвечает на вопросы, решает задачи и помогает довести результат до конца.</p><span class="res">Результат: ${i.practicum.replace(/\.$/, "")}</span><span class="t-all">Во всех тарифах</span></div></li>
         <li><div class="when"><b>Четверг</b><span>${i.dates.thu || CONFIG.tbd}</span></div>
-          <div class="what"><b>Встреча с куратором в мини-группе</b><p>Куратор отвечает на вопросы и помогает доделать то, что начали во вторник.</p><span class="tariff">в тарифах с поддержкой</span></div></li>
+          <div class="what"><b>Встреча с куратором в мини-группе</b><p>Куратор отвечает на вопросы и помогает доделать то, что начали во вторник.</p><span class="t-sup">С поддержкой</span></div></li>
         <li><div class="when"><b>Всю неделю</b><span>в своём темпе</span></div>
-          <div class="what"><b>${i.lessons} ${lessonsWord(i.lessons)} и чат мини-группы</b><p>Уроки курса «Нейропродюсер» по теме недели и чат участников с куратором, где можно задать вопрос в любой момент.</p></div></li>
+          <div class="what"><b>${i.lessons} ${lessonsWord(i.lessons)} и запись практикума</b><p>Уроки курса «Нейропродюсер» по теме недели. Смотрите, когда удобно.</p><span class="t-all">Во всех тарифах</span></div></li>
+        <li><div class="when"><b>Всю неделю</b><span>1 неделя поддержки</span></div>
+          <div class="what"><b>Чат мини-группы с куратором и нейрокуратор</b><p>Чат участников интенсива в формате мини-группы, поддержка куратора в чате 1 неделю и нейрокуратор.</p><span class="t-sup">С поддержкой</span></div></li>
+        <li><div class="when"><b>После недели</b><span>доступ к материалам</span></div>
+          <div class="what"><b>Уроки и запись остаются у вас</b><p>3 месяца в тарифе «Я сам», 6 месяцев в тарифах «Неделя с поддержкой» и «Все практикумы».</p></div></li>
       </ul>
       <div class="label">В конце недели у вас будет</div>
       <ul class="results">${i.results.map(r => `<li><b>${r[0]}</b><span>${r[1]}</span></li>`).join("")}</ul>
@@ -653,6 +665,7 @@ itemsEl.innerHTML = CONFIG.intensives.map(i => `
         <button data-id="${i.id}" data-v="self">«Я сам»<small>${fmt(P.self)}</small></button>
         <button data-id="${i.id}" data-v="support">С поддержкой<small>${fmt(P.support)}</small></button>
       </div>
+      <p class="seg-note"><b>«Я сам»:</b> практикум, видеоуроки, запись, доступ 3 месяца. <b>С поддержкой:</b> всё то же, плюс встречи с куратором в понедельник и четверг, чат мини-группы, нейрокуратор, доступ 6 месяцев.</p>
     </div>
   </div>`).join("");
 itemsEl.addEventListener("click", e => {
