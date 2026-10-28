@@ -133,6 +133,20 @@ h2 em{text-transform:none;font-style:italic}
 .side-link{font-size:14px;font-weight:600;text-align:center}
 
 /* formats */
+.timetable{display:grid;gap:10px;margin-bottom:18px}
+.tt{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:16px 18px;display:grid;grid-template-columns:150px 170px 1fr auto;gap:18px;align-items:center}
+@media (max-width:900px){.tt{grid-template-columns:1fr 1fr;gap:6px 14px}.tt .tt-title{grid-column:1/-1}.tt .btn{grid-column:1/-1}}
+.tt-date b{display:block;font-size:22px;line-height:1.1}
+.tt-date span,.tt-time span{font-size:13px;color:var(--muted)}
+.tt-time b{display:block;font-size:17px}
+.tt-title{font-size:17px;font-weight:600;line-height:1.3}
+.tt-title a{text-decoration:none}
+.tt-title a:hover{text-decoration:underline}
+.tt .btn{padding:11px 20px}
+.tt .btn[aria-pressed="true"]{background:var(--ink);color:#fff}
+.rec{background:var(--lemon);border-radius:20px;padding:20px 22px;max-width:860px}
+.rec b{display:block;font-size:18px;margin-bottom:4px}
+.rec p{font-size:15px}
 .formats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 @media (max-width:900px){.formats{grid-template-columns:1fr}}
 .fmt{background:var(--white);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;border:1px solid var(--line)}
@@ -270,6 +284,7 @@ h2 em{text-transform:none;font-style:italic}
     </a>
     <nav class="nav">
       <a href="#idea">Как устроено</a>
+      <a href="#schedule">Расписание</a>
       <a href="#intensives">Интенсивы</a>
       <a href="#formats">Стоимость</a>
       <a href="#faq">Вопросы</a>
@@ -302,13 +317,26 @@ h2 em{text-transform:none;font-style:italic}
     <p class="sec-lead">Не нужно проходить большой курс, чтобы начать пользоваться нейросетями в работе. Выбираете тему, за неделю разбираетесь в ней на практике и уходите с работающим инструментом.</p>
     <div class="idea">
       <div><b>Уроки</b><p>Видеоуроки курса «Нейропродюсер» по теме недели. Смотрите в своём темпе, когда удобно.</p></div>
-      <div><b>Практикум</b><p>Три часа в прямом эфире с Павлом Лебедевым. Делаете результат на своей задаче, а Павел отвечает на вопросы и помогает довести до конца.</p></div>
-      <div><b>Куратор</b><p>Встречи с куратором и чат в мини-группе. Помогают подключить нейросети и доделать то, что начали на практикуме. Есть в тарифах «Неделя с поддержкой» и «Все практикумы».</p></div>
+      <div><b>Практикум</b><p>Прямой эфир с Павлом Лебедевым по вторникам с 12:00 до 14:00 по Москве. Делаете результат на своей задаче, а Павел отвечает на вопросы и помогает довести до конца.</p></div>
+      <div><b>Куратор</b><p>Встречи с куратором и чат в мини-группе. Помогают разобраться с нейросетями и доделать то, что начали на практикуме. Есть в тарифах «Неделя с поддержкой» и «Все практикумы».</p></div>
     </div>
   </div>
 </section>
 
-<section class="sec" id="intensives">
+
+<section class="sec" id="schedule">
+  <div class="wrap">
+    <h2>Расписание <em>практикумов</em></h2>
+    <p class="sec-lead">Практикумы с Павлом Лебедевым проходят по вторникам с 12:00 до 14:00 по Москве. Каждую неделю новая тема.</p>
+    <div class="timetable" id="timetable"></div>
+    <div class="rec">
+      <b>Не успеваете на эфир?</b>
+      <p>Запись практикума будет обязательно, она останется у всех участников. А если удобнее учиться в своём темпе, любой практикум можно купить в записи на тарифе «Я сам».</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-white" id="intensives">
   <div class="wrap">
     <h2>Выберите <em>свою</em> неделю</h2>
     <p class="sec-lead">Нажмите «Хочу» на интенсивах, которые вам подходят. Они попадут в ваш набор, а стоимость с учётом скидки вы увидите ниже.</p>
@@ -316,7 +344,7 @@ h2 em{text-transform:none;font-style:italic}
   </div>
 </section>
 
-<section class="sec sec-white" id="formats">
+<section class="sec" id="formats">
   <div class="wrap">
     <h2>Форматы <em>и стоимость</em></h2>
     <p class="sec-lead">Каждый интенсив можно пройти самостоятельно или с кураторами. Чем больше интенсивов в наборе, тем больше скидка, а пакет «Все практикумы» самый выгодный.</p>
@@ -325,7 +353,7 @@ h2 em{text-transform:none;font-style:italic}
         <h3>«Я сам»</h3>
         <div class="price" data-price="self"></div>
         <ul>
-          <li>Интенсив.</li>
+          <li>Интенсив: в прямом эфире или в записи.</li>
           <li>Видеоуроки.</li>
           <li>Запись интенсива.</li>
           <li>Доступ на 3 месяца.</li>
@@ -336,8 +364,8 @@ h2 em{text-transform:none;font-style:italic}
         <h3>«Неделя с поддержкой»</h3>
         <div class="price" data-price="support"></div>
         <ul>
-          <li>Понедельник: подготовка к подключению нейросетей.</li>
-          <li>Вторник: интенсив.</li>
+          <li>Практикум с Павлом во вторник.</li>
+          <li>Помощь кураторов с подключением нейросетей.</li>
           <li>Четверг: встреча с куратором в мини-группе для ответов на вопросы.</li>
           <li>Чат участников в формате мини-группы с куратором.</li>
           <li>Видеоуроки и запись.</li>
@@ -364,7 +392,7 @@ h2 em{text-transform:none;font-style:italic}
   </div>
 </section>
 
-<section class="sec" id="calc">
+<section class="sec sec-white" id="calc">
   <div class="wrap">
     <h2>Ваш <em>набор</em></h2>
     <p class="sec-lead">Проверьте выбранные интенсивы и формат для каждого. Скидка за количество и итог считаются сразу.</p>
@@ -404,13 +432,13 @@ h2 em{text-transform:none;font-style:italic}
   </div>
 </section>
 
-<section class="sec sec-white" id="faq">
+<section class="sec" id="faq">
   <div class="wrap">
     <h2>Вопросы</h2>
     <div class="faq">
-      <details><summary>Что такое интенсив?</summary><p>Это неделя прокачки в одной теме ИИ. Во всех тарифах: трёхчасовой практикум с Павлом Лебедевым в прямом эфире во вторник, видеоуроки по теме и запись практикума. В тарифах «Неделя с поддержкой» и «Все практикумы» добавляются встреча с кураторами в понедельник, встреча с куратором в мини-группе в четверг, чат мини-группы с куратором и нейрокуратор.</p></details>
+      <details><summary>Что такое интенсив?</summary><p>Это неделя прокачки в одной теме ИИ. Во всех тарифах: практикум с Павлом Лебедевым в прямом эфире во вторник с 12:00 до 14:00 по Москве, видеоуроки по теме и запись практикума. В тарифах «Неделя с поддержкой» и «Все практикумы» добавляются встреча с куратором в мини-группе в четверг, чат мини-группы с куратором и нейрокуратор.</p></details>
       <details><summary>Как считается скидка за количество?</summary><p id="faqTiers"></p></details>
-      <details><summary>Будет ли запись и сколько длится доступ?</summary><p>Запись и видеоуроки есть во всех форматах. Доступ на 3 месяца в формате «Я сам» и на 6 месяцев в форматах «Неделя с поддержкой» и «Все практикумы».</p></details>
+      <details><summary>Будет ли запись, если я не успею на эфир?</summary><p>Да, запись практикума будет обязательно, и видеоуроки тоже есть во всех форматах. Любой практикум можно купить в записи на тарифе «Я сам». Доступ на 3 месяца в формате «Я сам» и на 6 месяцев в форматах «Неделя с поддержкой» и «Все практикумы».</p></details>
       <details><summary>Нужно ли уметь программировать?</summary><p>Нет. Скиллы пишутся обычными словами, агенты и приложения собираются по шагам на практикуме. Нужны только компьютер и рабочая задача, на которой хотите получить результат.</p></details>
       <details><summary>Как оплатить?</summary><p>Нажмите «Записаться»: откроется Telegram службы заботы с уже собранным набором и суммой. Менеджер пришлёт ссылку на оплату.</p></details>
     </div>
@@ -521,14 +549,16 @@ const CONFIG = {
   telegram: "pmlebedev_support",
   site: "https://iiuniversitet.online",
   // текст, который показывается, пока дата или время не заполнены
-  tbd: "дата и время уточняются",
+  tbd: "время уточняется",
+  // время практикумов по вторникам
+  practicumTime: "с 12:00 до 14:00",
   intensives: [
     { id: "promty", name: "Промты и скиллы для ChatGPT и Claude", short: "Ускорение работы с ChatGPT и Claude",
       title: "Ускорение работы с ChatGPT и Claude",
       sub: "Создайте свой скилл, который выполняет вашу рабочую задачу в один клик",
       story: "Для тех, кто пишет каждый день. Ответы нейросети «средние», и каждый раз приходится объяснять заново? Разберётесь, почему так, и соберёте скилл, который помнит ваши правила.",
-      // даты и время встреч: впишите, например "10 ноября, 19:00-20:00"
-      dates: { mon: "", tue: "", thu: "" },
+      // tue: дата практикума, thu: дата встречи с куратором, thuTime: время встречи, например "с 18:00 до 19:00"
+      dates: { tue: "3 ноября", thu: "5 ноября", thuTime: "" },
       lessons: 5,
       practicum: "Собираете свой скилл для Claude на своей рабочей задаче.",
       results: [["Свой скилл для Claude","Папка с инструкцией и примерами под одну вашу задачу. Claude сам понимает, когда её включить."],["Промты под ваши задачи","Проверенные в ChatGPT и Claude на ваших же задачах. Сохраните и пользуйтесь."],["Порядок для следующих скиллов","Прошли путь один раз с Павлом, второй и третий скилл соберёте сами."]],
@@ -538,27 +568,27 @@ const CONFIG = {
       title: "Контент-завод: фото и дизайн с нейросетями",
       sub: "Сделайте цифровую фотосессию и фирменный стиль для блога без фотографа и дизайнера",
       story: "Визуал без съёмочного дня и студии. Графические нейросети дают самый наглядный первый шаг: результат каждого промта сразу видно на экране.",
-      dates: { mon: "", tue: "", thu: "" },
+      dates: { tue: "10 ноября", thu: "12 ноября", thuTime: "" },
       lessons: 9,
       practicum: "Снимаете свою цифровую фотосессию и собираете фирменный стиль.",
       results: [["Цифровая фотосессия","Снимки с вашим лицом для аватарки, постов и обложек: портрет эксперта, кадр за работой, на сцене."],["Лист фирменного стиля","Ваши цвета, шрифты и правила кадра на одной странице, чтобы посты и обложки выглядели как одно целое."],["Визуал для блога","Первые обложки постов, сторис и видео в своём стиле, готовые к публикации."],["Свои промты-шаблоны","Чтобы следующую фотосессию и обложку делать самостоятельно."]],
       audience: ["Эксперт и блогер","SMM-специалист","Владелец малого бизнеса","Новичок в нейросетях"],
       img: "/_astro/fotosessiya.CU2CLOMi.webp", url: "/kurs/intensiv-fotosessiya/" },
-    { id: "agent", name: "ИИ-агент", short: "ИИ-агенты: продавец и служба заботы",
-      title: "ИИ-агенты: продавец и служба заботы",
+    { id: "agent", name: "ИИ-агент", short: "ИИ-агенты: продавец и служба поддержки",
+      title: "ИИ-агенты: ИИ-продавец и ИИ-служба поддержки",
       sub: "Соберите ИИ-агента, который отвечает клиентам и приводит заявки, пока вы заняты другим",
       story: "Заявки приходят и ночью, а менеджеры по сто раз отвечают на одни и те же вопросы. Агент берёт типовые вопросы на себя и не теряет клиента.",
-      dates: { mon: "", tue: "", thu: "" },
+      dates: { tue: "17 ноября", thu: "19 ноября", thuTime: "" },
       lessons: 8,
       practicum: "Собираете своего агента, который отвечает клиентам в мессенджере.",
       results: [["Агент-продавец или консультант","Отвечает на вопросы о цене и условиях, просит контакт и передаёт горячего клиента менеджеру."],["Ответы по вашей базе знаний","Знает ваши документы, прайс и правила и отвечает в любое время суток."],["Бот в мессенджере","Агент отвечает людям там, где они вам пишут: в Telegram или другом мессенджере."],["Уведомления о заявках","Когда агент собрал контакты, вам приходит сообщение с кратким итогом разговора."]],
       audience: ["Предпринимателям","Руководителям отделов","HR и рекрутерам","Тем, кто хочет делать агентов под заказ"],
       img: "/_astro/agent.CWlvoqjZ.webp", url: "/kurs/intensiv-agent/" },
-    { id: "vibecoding", name: "Вайбкодинг с агентами", short: "Вайбкодинг и автоматизация",
-      title: "Вайбкодинг и автоматизация",
+    { id: "vibecoding", name: "Вайбкодинг с агентами", short: "Вайбкодинг и автоматизация с n8n",
+      title: "Вайбкодинг и автоматизация с n8n",
       sub: "Соберите своё приложение или сервис руками ИИ-агентов Claude Code и Codex, без программиста",
       story: "Нужен свой сервис, а программиста нет? Запись клиентов, расчёт цены, учёт заявок: соберёте сами, без подрядчика и ТЗ на двадцать страниц.",
-      dates: { mon: "", tue: "", thu: "" },
+      dates: { tue: "24 ноября", thu: "26 ноября", thuTime: "" },
       lessons: 6,
       practicum: "Собираете работающее приложение под свою задачу.",
       results: [["Работающее приложение","Ваш сервис под вашу задачу: открывается, нажимается, считает и сохраняет. Его можно показать коллегам и клиентам."],["Инструкция проекта","Файл, по которому агент продолжит работу с того же места через неделю или через месяц."],["Способ работы с агентом","Порядок «задача, план, сборка, проверка». По нему соберёте следующее приложение уже без практикума."]],
@@ -591,6 +621,21 @@ CONFIG.intensives.forEach(i => state.picks[i.id] = "none");
 /* темы в шапке */
 document.getElementById("topics").innerHTML = CONFIG.intensives.map(i => `<a href="#story-${i.id}">${i.short}</a>`).join("");
 
+/* расписание */
+document.getElementById("timetable").innerHTML = CONFIG.intensives.map(i => `
+  <div class="tt">
+    <div class="tt-date"><b>${i.dates.tue}</b><span>вторник</span></div>
+    <div class="tt-time"><b>${CONFIG.practicumTime}</b><span>по Москве</span></div>
+    <div class="tt-title"><a href="#story-${i.id}">Практикум «${i.title}»</a></div>
+    <button class="btn btn-yellow" data-want="${i.id}" aria-pressed="false">Хочу</button>
+  </div>`).join("");
+document.getElementById("timetable").addEventListener("click", e => {
+  const b = e.target.closest("[data-want]"); if (!b || state.bundle) return;
+  const id = b.dataset.want;
+  state.picks[id] = state.picks[id] === "none" ? "support" : "none";
+  render();
+});
+
 /* карточки интенсивов */
 document.getElementById("stories").innerHTML = CONFIG.intensives.map((i, n) => `
   <article class="story" id="story-${i.id}">
@@ -601,18 +646,16 @@ document.getElementById("stories").innerHTML = CONFIG.intensives.map((i, n) => `
       <a class="side-link" href="${abs(i.url)}" target="_blank" rel="noopener">Полная программа интенсива ↗</a>
     </div>
     <div>
-      <div class="story-num">Неделя ${n + 1} из ${N} · интенсив «${i.name}»</div>
+      <div class="story-num">${i.dates.tue} · неделя ${n + 1} из ${N} · интенсив «${i.name}»</div>
       <h3>${i.title}</h3>
       <p class="story-sub">${i.sub}</p>
       <p class="story-lead">${i.story}</p>
       <div class="label">Что входит в неделю</div>
       <div class="legend"><span class="t-all">Во всех тарифах</span><span class="t-sup">Только «Неделя с поддержкой» и «Все практикумы»</span></div>
       <ul class="sched">
-        <li><div class="when"><b>Понедельник</b><span>${i.dates.mon || CONFIG.tbd}</span></div>
-          <div class="what"><b>Встреча с кураторами</b><p>Кураторы помогают подключиться к нейросетям, чтобы ко вторнику всё работало.</p><span class="t-sup">С поддержкой</span></div></li>
-        <li class="key"><div class="when"><b>Вторник</b><span>${i.dates.tue || CONFIG.tbd}</span></div>
-          <div class="what"><b>Практикум с Павлом Лебедевым, 3 часа</b><p>Прямой эфир: Павел ведёт практикум, отвечает на вопросы, решает задачи и помогает довести результат до конца.</p><span class="res">Результат: ${i.practicum.replace(/\.$/, "")}</span><span class="t-all">Во всех тарифах</span></div></li>
-        <li><div class="when"><b>Четверг</b><span>${i.dates.thu || CONFIG.tbd}</span></div>
+        <li class="key"><div class="when"><b>${i.dates.tue}, вторник</b><span>${CONFIG.practicumTime} по Москве</span></div>
+          <div class="what"><b>Практикум с Павлом Лебедевым</b><p>Прямой эфир: Павел ведёт практикум, отвечает на вопросы, решает задачи и помогает довести результат до конца. Не успеваете на эфир? Запись будет обязательно.</p><span class="res">Результат: ${i.practicum.replace(/\.$/, "")}</span><span class="t-all">Во всех тарифах</span></div></li>
+        <li><div class="when"><b>${i.dates.thu}, четверг</b><span>${i.dates.thuTime || CONFIG.tbd}</span></div>
           <div class="what"><b>Встреча с куратором в мини-группе</b><p>Куратор отвечает на вопросы и помогает доделать то, что начали во вторник.</p><span class="t-sup">С поддержкой</span></div></li>
         <li><div class="when"><b>Всю неделю</b><span>в своём темпе</span></div>
           <div class="what"><b>${i.lessons} ${lessonsWord(i.lessons)} и запись практикума</b><p>Уроки курса «Нейропродюсер» по теме недели. Смотрите, когда удобно.</p><span class="t-all">Во всех тарифах</span></div></li>
@@ -665,7 +708,7 @@ itemsEl.innerHTML = CONFIG.intensives.map(i => `
         <button data-id="${i.id}" data-v="self">«Я сам»<small>${fmt(P.self)}</small></button>
         <button data-id="${i.id}" data-v="support">С поддержкой<small>${fmt(P.support)}</small></button>
       </div>
-      <p class="seg-note"><b>«Я сам»:</b> практикум, видеоуроки, запись, доступ 3 месяца. <b>С поддержкой:</b> всё то же, плюс встречи с куратором в понедельник и четверг, чат мини-группы, нейрокуратор, доступ 6 месяцев.</p>
+      <p class="seg-note"><b>«Я сам»:</b> практикум, видеоуроки, запись, доступ 3 месяца. <b>С поддержкой:</b> всё то же, плюс встреча с куратором в четверг, чат мини-группы, нейрокуратор, доступ 6 месяцев.</p>
     </div>
   </div>`).join("");
 itemsEl.addEventListener("click", e => {
@@ -704,9 +747,10 @@ function render(){
     document.querySelectorAll(`.seg button[data-id="${i.id}"]`).forEach(b => {
       b.setAttribute("aria-pressed", b.dataset.v === v); b.disabled = state.bundle;
     });
-    const w = document.querySelector(`[data-want="${i.id}"]`);
-    w.setAttribute("aria-pressed", v !== "none");
-    w.textContent = v !== "none" ? "✓ В наборе" : "Хочу";
+    document.querySelectorAll(`[data-want="${i.id}"]`).forEach(w => {
+      w.setAttribute("aria-pressed", v !== "none");
+      w.textContent = v !== "none" ? "✓ В наборе" : "Хочу";
+    });
     if (v !== "none") {
       count++; sum += P[v];
       lines.push({ name: i.short + (v === "self" ? " · «Я сам»" : " · с поддержкой"), price: state.bundle ? "в пакете" : fmt(P[v]) });
