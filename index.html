@@ -385,7 +385,7 @@ h2 em{text-transform:none;font-style:italic}
         <h3>Итого</h3>
         <ul class="sum-lines" id="lines"></ul>
         <div class="sum-total">
-          <div><small>К оплате</small><b id="total">0 ₽</b></div>
+          <div><small>К оплате</small><b id="total">0 руб.</b></div>
           <div class="sum-old" id="totalOld"></div>
         </div>
         <div class="sum-save" id="sumSave"></div>
@@ -497,7 +497,7 @@ h2 em{text-transform:none;font-style:italic}
 </footer>
 
 <div class="bar" id="bar">
-  <div><small id="barCount">В наборе</small><b id="barTotal">0 ₽</b></div>
+  <div><small id="barCount">В наборе</small><b id="barTotal">0 руб.</b></div>
   <a class="btn btn-yellow" href="#calc">К расчёту</a>
 </div>
 
@@ -571,7 +571,7 @@ const CONFIG = {
 /* ========================================================================== */
 
 const P = CONFIG.prices, N = CONFIG.intensives.length;
-const fmt = n => Math.round(n).toLocaleString("ru-RU").replace(/ /g, " ") + " ₽";
+const fmt = n => Math.round(n).toLocaleString("ru-RU").replace(/ /g, " ") + " руб.";
 const abs = u => IMG[u] || (u.startsWith("http") ? u : CONFIG.site + u);
 const tierPct = c => { let p = 0; for (const k in CONFIG.tiers) if (c >= +k) p = CONFIG.tiers[k]; return p; };
 const cPrice = c => Math.round(c.price * (100 - CONFIG.courseDiscount) / 100 / 10) * 10;
@@ -630,12 +630,12 @@ document.getElementById("bundleOld").textContent = fmt(fullSupport);
 document.getElementById("bundleNew").textContent = fmt(P.bundle);
 document.getElementById("bundleSave").textContent = "Экономия " + fmt(fullSupport - P.bundle) + " и бонусы";
 document.getElementById("tiers").innerHTML =
-  tierKeys.map(k => `<div class="tier"><b>−${CONFIG.tiers[k]}%</b><span>за ${k} ${word(k)}</span></div>`).join("");
+  tierKeys.map(k => `<div class="tier"><b>-${CONFIG.tiers[k]}%</b><span>за ${k} ${word(k)}</span></div>`).join("");
 document.getElementById("steps").innerHTML = [1, ...tierKeys].map(k =>
-  `<div class="step" data-k="${k}"><b>${k}</b>${CONFIG.tiers[k] ? "−" + CONFIG.tiers[k] + "%" : "без скидки"}</div>`).join("");
+  `<div class="step" data-k="${k}"><b>${k}</b>${CONFIG.tiers[k] ? "-" + CONFIG.tiers[k] + "%" : "без скидки"}</div>`).join("");
 document.getElementById("faqTiers").textContent =
   "Скидка зависит от того, сколько интенсивов вы берёте: " +
-  tierKeys.map(k => `${k} ${word(k)}: −${CONFIG.tiers[k]}%`).join(", ") +
+  tierKeys.map(k => `${k} ${word(k)}: -${CONFIG.tiers[k]}%`).join(", ") +
   `. Формат каждого интенсива можно выбрать свой. Пакет «Все практикумы» стоит ${fmt(P.bundle)} и уже включает максимальную выгоду, поэтому скидка за количество к нему не добавляется.`;
 document.getElementById("extrasLead").textContent =
   `Вместе с интенсивами курсы школы дешевле на ${CONFIG.courseDiscount}%. Отметьте нужные, они добавятся в набор.`;
@@ -667,7 +667,7 @@ extrasEl.innerHTML = CONFIG.courses.map(c => `
     <span>
       <h4>${c.title}</h4>
       <div class="ep"><s>${c.from ? "от " : ""}${fmt(c.price)}</s><b>${c.from ? "от " : ""}${fmt(cPrice(c))}</b></div>
-      <span class="tag">−${CONFIG.courseDiscount}% · добавить</span>
+      <span class="tag">-${CONFIG.courseDiscount}% · добавить</span>
     </span>
   </button>`).join("");
 extrasEl.addEventListener("click", e => {
@@ -706,17 +706,17 @@ function render(){
   const intensTotal = state.bundle ? P.bundle : sum - disc;
   const intensFull = state.bundle ? fullSupport : sum;
   if (state.bundle) lines.push({ name: "Бонусы пакета: 5 модулей, запись по таблицам, Zoom 1 на 1", price: "в пакете" });
-  if (pct) lines.push({ name: `Скидка за ${count} ${word(count)} −${pct}%`, price: "−" + fmt(disc), cls: "disc" });
+  if (pct) lines.push({ name: `Скидка за ${count} ${word(count)} -${pct}%`, price: "-" + fmt(disc), cls: "disc" });
 
   let cSum = 0, cFull = 0, cCount = 0, first = true;
   CONFIG.courses.forEach(c => {
     const on = !!state.courses[c.id];
     const el = document.getElementById("course-" + c.id);
     el.classList.toggle("on", on); el.setAttribute("aria-pressed", on);
-    el.querySelector(".tag").textContent = on ? "В наборе ✓" : `−${CONFIG.courseDiscount}% · добавить`;
+    el.querySelector(".tag").textContent = on ? "В наборе ✓" : `-${CONFIG.courseDiscount}% · добавить`;
     if (on) {
       cCount++; cSum += cPrice(c); cFull += c.price;
-      lines.push({ name: c.title + ` −${CONFIG.courseDiscount}%`, price: (c.from ? "от " : "") + fmt(cPrice(c)), cls: first && lines.length ? "sep" : "" });
+      lines.push({ name: c.title + ` -${CONFIG.courseDiscount}%`, price: (c.from ? "от " : "") + fmt(cPrice(c)), cls: first && lines.length ? "sep" : "" });
       first = false;
     }
   });
@@ -735,7 +735,7 @@ function render(){
   const next = tierKeys.find(k => k > count);
   document.getElementById("progressText").textContent = state.bundle
     ? "Выбран пакет «Все практикумы»"
-    : (next ? `Добавьте ещё ${next - count} и получите −${CONFIG.tiers[next]}%` : `Максимальная скидка −${pct}%`);
+    : (next ? `Добавьте ещё ${next - count} и получите -${CONFIG.tiers[next]}%` : `Максимальная скидка -${pct}%`);
 
   let h = "";
   if (state.bundle) {
@@ -745,7 +745,7 @@ function render(){
   } else if (intensTotal >= P.bundle * 0.6) {
     h = `<b>Доплатите ${fmt(P.bundle - intensTotal)} и заберите всё</b>В пакете «Все практикумы» все 4 интенсива с поддержкой, 5 модулей по специальности и встреча с куратором 1 на 1.<br><button data-act="bundle">Посмотреть пакет</button>`;
   } else if (count && next) {
-    h = `<b>Ещё ${next - count} ${word(next - count)} и скидка −${CONFIG.tiers[next]}%</b>Скидка за количество действует на всю сумму интенсивов в наборе.`;
+    h = `<b>Ещё ${next - count} ${word(next - count)} и скидка -${CONFIG.tiers[next]}%</b>Скидка за количество действует на всю сумму интенсивов в наборе.`;
   }
   const hint = document.getElementById("hint");
   hint.innerHTML = h; hint.classList.toggle("show", !!h);
