@@ -141,6 +141,7 @@ h2 em{text-transform:none;font-style:italic}
 .tt-time b{display:block;font-size:17px}
 .tt-title{font-size:17px;font-weight:600;line-height:1.3}
 .tt-title a{text-decoration:none}
+.tt-title small{display:block;font-size:13px;font-weight:400;color:var(--muted);margin-top:4px}
 .tt-title a:hover{text-decoration:underline}
 .tt .btn{padding:11px 20px}
 .tt .btn[aria-pressed="true"]{background:var(--ink);color:#fff}
@@ -185,8 +186,12 @@ h2 em{text-transform:none;font-style:italic}
 .progress{background:var(--white);border-radius:var(--radius);padding:18px 20px;margin-bottom:14px}
 .progress-head{display:flex;justify-content:space-between;gap:12px;font-size:15px;margin-bottom:12px;flex-wrap:wrap}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-.step{border-radius:12px;background:var(--bg);padding:8px 6px;text-align:center;font-size:13px;line-height:1.2;color:var(--muted);transition:background .2s}
-.step b{display:block;font-size:16px;color:var(--ink)}
+.calc>*{min-width:0}
+@media (max-width:560px){.steps{grid-template-columns:1fr 1fr}}
+.step{border-radius:14px;background:var(--bg);padding:12px 8px;text-align:center;line-height:1.15;transition:background .2s}
+.step span{display:block;font-size:13px;color:var(--muted);margin-bottom:4px}
+.step b{display:block;font-size:clamp(17px,2.1vw,26px);font-weight:800;color:var(--ink);white-space:nowrap}
+.step.done span{color:var(--ink)}
 .step.done{background:var(--lemon-strong);color:var(--ink)}
 .bundle{background:var(--ink);color:#fff;border-radius:var(--radius);padding:26px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;margin-top:14px}
 @media (max-width:640px){.bundle{grid-template-columns:1fr}}
@@ -204,15 +209,16 @@ h2 em{text-transform:none;font-style:italic}
 .extras-lead{font-size:15px;color:var(--muted);margin-bottom:16px}
 .extras{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 @media (max-width:640px){.extras{grid-template-columns:1fr}}
-.extra{background:var(--white);border:2px solid transparent;border-radius:18px;padding:12px;display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:center;cursor:pointer;text-align:left;transition:border-color .2s}
+.extra{background:var(--white);border:2px solid transparent;border-radius:18px;padding:12px;display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:start;transition:border-color .2s}
 .extra.on{border-color:var(--ink)}
 .extra-img{width:96px;aspect-ratio:16/10;border-radius:12px;overflow:hidden;background:var(--beige)}
 .extra-img img{width:100%;height:100%;object-fit:cover;color:transparent}
 .extra h4{font-size:16px;line-height:1.2}
-.extra .ep{font-size:14px;margin-top:4px}
-.extra .ep s{color:var(--muted);margin-right:6px}
-.extra .tag{display:inline-block;font-size:12px;font-weight:700;background:var(--lemon);border-radius:999px;padding:2px 9px;margin-top:6px}
-.extra.on .tag{background:var(--ink);color:#fff}
+.extra .ep{font-size:14px;margin-top:4px;display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}
+.extra .ep s{color:var(--muted)}
+.extra .off{font-size:12px;font-weight:700;background:var(--ink);color:#fff;border-radius:6px;padding:1px 6px}
+.extra .add{margin-top:10px;width:100%;padding:11px 16px;font-size:15px}
+.extra .add[aria-pressed="true"]{background:var(--ink);color:#fff}
 .sum{position:sticky;top:88px;background:var(--white);border-radius:var(--radius);padding:24px;border:1px solid var(--line)}
 .sum h3{font-size:20px;margin-bottom:14px}
 .sum-lines{list-style:none;display:grid;gap:10px;font-size:15px;min-height:40px}
@@ -223,6 +229,7 @@ h2 em{text-transform:none;font-style:italic}
 .sum-empty{color:var(--muted);font-size:15px}
 .sum-total{border-top:1px dashed var(--line);margin-top:16px;padding-top:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
 .sum-total b{font-size:34px;font-weight:800;line-height:1.1}
+.sum-total b.empty{font-size:20px;font-weight:600;color:var(--muted)}
 .sum-total small{display:block;color:var(--muted);font-size:13px}
 .sum-old{color:var(--muted);text-decoration:line-through;font-size:16px}
 .sum-save{display:none;margin-top:10px;background:var(--ink);color:var(--lemon-strong);border-radius:12px;padding:8px 12px;font-size:14px;font-weight:700;text-align:center}
@@ -296,9 +303,9 @@ h2 em{text-transform:none;font-style:italic}
 <section class="hero">
   <div class="wrap">
     <div>
-      <div class="kicker">Интенсивы iiuniversitet · онлайн</div>
-      <h1>Неделя <span class="y">практики</span><em>с Павлом Лебедевым при поддержке куратора</em></h1>
-      <p class="lead">Разберитесь с текстовыми и графическими нейросетями, создайте своего ИИ-агента и автоматизируйте рутину. Каждый интенсив это неделя прокачки в одной теме ИИ, после которой у вас остаётся готовый результат на вашей задаче.</p>
+      <div class="kicker">Интенсивы по нейросетям · онлайн · с 2 ноября</div>
+      <h1>Внедрите нейросети <span class="y">за неделю</span><em>интенсивы с Павлом Лебедевым при поддержке куратора</em></h1>
+      <p class="lead">Соберите скилл, который делает рабочую задачу в один клик. Сделайте фотосессию и визуал для блога без фотографа. Запустите ИИ-агента, который отвечает клиентам. Соберите своё приложение без программиста. Одна тема, неделя практики и готовый результат на вашей задаче.</p>
       <div class="topics" id="topics"></div>
       <div class="hero-actions">
         <a class="btn btn-yellow btn-big" href="#intensives">Выбрать неделю →</a>
@@ -364,8 +371,8 @@ h2 em{text-transform:none;font-style:italic}
         <h3>«Неделя с поддержкой»</h3>
         <div class="price" data-price="support"></div>
         <ul>
-          <li>Практикум с Павлом во вторник.</li>
-          <li>Помощь кураторов с подключением нейросетей.</li>
+          <li>Понедельник: встреча с кураторами, помощь с подключением нейросетей.</li>
+          <li>Вторник: практикум с Павлом.</li>
           <li>Четверг: встреча с куратором в мини-группе для ответов на вопросы.</li>
           <li>Чат участников в формате мини-группы с куратором.</li>
           <li>Видеоуроки и запись.</li>
@@ -394,12 +401,12 @@ h2 em{text-transform:none;font-style:italic}
 
 <section class="sec sec-white" id="calc">
   <div class="wrap">
-    <h2>Ваш <em>набор</em></h2>
-    <p class="sec-lead">Проверьте выбранные интенсивы и формат для каждого. Скидка за количество и итог считаются сразу.</p>
+    <h2>Чем больше учитесь, <em>тем больше скидка</em></h2>
+    <p class="sec-lead">Это ваш набор. Проверьте выбранные интенсивы и формат для каждого, скидка и итог считаются сразу.</p>
     <div class="calc">
       <div>
         <div class="progress">
-          <div class="progress-head"><span>Скидка за количество интенсивов</span><b id="progressText"></b></div>
+          <div class="progress-head"><span>Ваша скидка</span><b id="progressText"></b></div>
           <div class="steps" id="steps"></div>
         </div>
         <div class="items" id="items"></div>
@@ -436,7 +443,7 @@ h2 em{text-transform:none;font-style:italic}
   <div class="wrap">
     <h2>Вопросы</h2>
     <div class="faq">
-      <details><summary>Что такое интенсив?</summary><p>Это неделя прокачки в одной теме ИИ. Во всех тарифах: практикум с Павлом Лебедевым в прямом эфире во вторник с 12:00 до 14:00 по Москве, видеоуроки по теме и запись практикума. В тарифах «Неделя с поддержкой» и «Все практикумы» добавляются встреча с куратором в мини-группе в четверг, чат мини-группы с куратором и нейрокуратор.</p></details>
+      <details><summary>Что такое интенсив?</summary><p>Это неделя прокачки в одной теме ИИ. Во всех тарифах: практикум с Павлом Лебедевым в прямом эфире во вторник с 12:00 до 14:00 по Москве, видеоуроки по теме и запись практикума. В тарифах «Неделя с поддержкой» и «Все практикумы» добавляются встреча с кураторами по подключению нейросетей в понедельник, встреча с куратором в мини-группе в четверг, чат мини-группы с куратором и нейрокуратор.</p></details>
       <details><summary>Как считается скидка за количество?</summary><p id="faqTiers"></p></details>
       <details><summary>Будет ли запись, если я не успею на эфир?</summary><p>Да, запись практикума будет обязательно, и видеоуроки тоже есть во всех форматах. Любой практикум можно купить в записи на тарифе «Я сам». Доступ на 3 месяца в формате «Я сам» и на 6 месяцев в форматах «Неделя с поддержкой» и «Все практикумы».</p></details>
       <details><summary>Нужно ли уметь программировать?</summary><p>Нет. Скиллы пишутся обычными словами, агенты и приложения собираются по шагам на практикуме. Нужны только компьютер и рабочая задача, на которой хотите получить результат.</p></details>
@@ -557,8 +564,8 @@ const CONFIG = {
       title: "Ускорение работы с ChatGPT и Claude",
       sub: "Создайте свой скилл, который выполняет вашу рабочую задачу в один клик",
       story: "Для тех, кто пишет каждый день. Ответы нейросети «средние», и каждый раз приходится объяснять заново? Разберётесь, почему так, и соберёте скилл, который помнит ваши правила.",
-      // tue: дата практикума, thu: дата встречи с куратором, thuTime: время встречи, например "с 18:00 до 19:00"
-      dates: { tue: "3 ноября", thu: "5 ноября", thuTime: "" },
+      // mon: встреча по подключению нейросетей, monTime: её время, tue: дата практикума, thu: дата встречи с куратором, thuTime: время встречи, например "с 18:00 до 19:00"
+      dates: { mon: "2 ноября", monTime: "", tue: "3 ноября", thu: "5 ноября", thuTime: "" },
       lessons: 5,
       practicum: "Собираете свой скилл для Claude на своей рабочей задаче.",
       results: [["Свой скилл для Claude","Папка с инструкцией и примерами под одну вашу задачу. Claude сам понимает, когда её включить."],["Промты под ваши задачи","Проверенные в ChatGPT и Claude на ваших же задачах. Сохраните и пользуйтесь."],["Порядок для следующих скиллов","Прошли путь один раз с Павлом, второй и третий скилл соберёте сами."]],
@@ -568,7 +575,7 @@ const CONFIG = {
       title: "Контент-завод: фото и дизайн с нейросетями",
       sub: "Сделайте цифровую фотосессию и фирменный стиль для блога без фотографа и дизайнера",
       story: "Визуал без съёмочного дня и студии. Графические нейросети дают самый наглядный первый шаг: результат каждого промта сразу видно на экране.",
-      dates: { tue: "10 ноября", thu: "12 ноября", thuTime: "" },
+      dates: { mon: "9 ноября", monTime: "", tue: "10 ноября", thu: "12 ноября", thuTime: "" },
       lessons: 9,
       practicum: "Снимаете свою цифровую фотосессию и собираете фирменный стиль.",
       results: [["Цифровая фотосессия","Снимки с вашим лицом для аватарки, постов и обложек: портрет эксперта, кадр за работой, на сцене."],["Лист фирменного стиля","Ваши цвета, шрифты и правила кадра на одной странице, чтобы посты и обложки выглядели как одно целое."],["Визуал для блога","Первые обложки постов, сторис и видео в своём стиле, готовые к публикации."],["Свои промты-шаблоны","Чтобы следующую фотосессию и обложку делать самостоятельно."]],
@@ -578,7 +585,7 @@ const CONFIG = {
       title: "ИИ-агенты: ИИ-продавец и ИИ-служба поддержки",
       sub: "Соберите ИИ-агента, который отвечает клиентам и приводит заявки, пока вы заняты другим",
       story: "Заявки приходят и ночью, а менеджеры по сто раз отвечают на одни и те же вопросы. Агент берёт типовые вопросы на себя и не теряет клиента.",
-      dates: { tue: "17 ноября", thu: "19 ноября", thuTime: "" },
+      dates: { mon: "16 ноября", monTime: "", tue: "17 ноября", thu: "19 ноября", thuTime: "" },
       lessons: 8,
       practicum: "Собираете своего агента, который отвечает клиентам в мессенджере.",
       results: [["Агент-продавец или консультант","Отвечает на вопросы о цене и условиях, просит контакт и передаёт горячего клиента менеджеру."],["Ответы по вашей базе знаний","Знает ваши документы, прайс и правила и отвечает в любое время суток."],["Бот в мессенджере","Агент отвечает людям там, где они вам пишут: в Telegram или другом мессенджере."],["Уведомления о заявках","Когда агент собрал контакты, вам приходит сообщение с кратким итогом разговора."]],
@@ -588,7 +595,7 @@ const CONFIG = {
       title: "Вайбкодинг и автоматизация с n8n",
       sub: "Соберите своё приложение или сервис руками ИИ-агентов Claude Code и Codex, без программиста",
       story: "Нужен свой сервис, а программиста нет? Запись клиентов, расчёт цены, учёт заявок: соберёте сами, без подрядчика и ТЗ на двадцать страниц.",
-      dates: { tue: "24 ноября", thu: "26 ноября", thuTime: "" },
+      dates: { mon: "23 ноября", monTime: "", tue: "24 ноября", thu: "26 ноября", thuTime: "" },
       lessons: 6,
       practicum: "Собираете работающее приложение под свою задачу.",
       results: [["Работающее приложение","Ваш сервис под вашу задачу: открывается, нажимается, считает и сохраняет. Его можно показать коллегам и клиентам."],["Инструкция проекта","Файл, по которому агент продолжит работу с того же места через неделю или через месяц."],["Способ работы с агентом","Порядок «задача, план, сборка, проверка». По нему соберёте следующее приложение уже без практикума."]],
@@ -626,7 +633,7 @@ document.getElementById("timetable").innerHTML = CONFIG.intensives.map(i => `
   <div class="tt">
     <div class="tt-date"><b>${i.dates.tue}</b><span>вторник</span></div>
     <div class="tt-time"><b>${CONFIG.practicumTime}</b><span>по Москве</span></div>
-    <div class="tt-title"><a href="#story-${i.id}">Практикум «${i.title}»</a></div>
+    <div class="tt-title"><a href="#story-${i.id}">Практикум «${i.title}»</a><small>${i.dates.mon}, понедельник: встреча с кураторами по подключению нейросетей (с поддержкой)</small></div>
     <button class="btn btn-yellow" data-want="${i.id}" aria-pressed="false">Хочу</button>
   </div>`).join("");
 document.getElementById("timetable").addEventListener("click", e => {
@@ -653,6 +660,8 @@ document.getElementById("stories").innerHTML = CONFIG.intensives.map((i, n) => `
       <div class="label">Что входит в неделю</div>
       <div class="legend"><span class="t-all">Во всех тарифах</span><span class="t-sup">Только «Неделя с поддержкой» и «Все практикумы»</span></div>
       <ul class="sched">
+        <li><div class="when"><b>${i.dates.mon}, понедельник</b><span>${i.dates.monTime || CONFIG.tbd}</span></div>
+          <div class="what"><b>Встреча с кураторами: помощь с подключением нейросетей</b><p>Кураторы помогают подключиться к нейросетям, чтобы ко вторнику всё работало.</p><span class="t-sup">С поддержкой</span></div></li>
         <li class="key"><div class="when"><b>${i.dates.tue}, вторник</b><span>${CONFIG.practicumTime} по Москве</span></div>
           <div class="what"><b>Практикум с Павлом Лебедевым</b><p>Прямой эфир: Павел ведёт практикум, отвечает на вопросы, решает задачи и помогает довести результат до конца. Не успеваете на эфир? Запись будет обязательно.</p><span class="res">Результат: ${i.practicum.replace(/\.$/, "")}</span><span class="t-all">Во всех тарифах</span></div></li>
         <li><div class="when"><b>${i.dates.thu}, четверг</b><span>${i.dates.thuTime || CONFIG.tbd}</span></div>
@@ -687,7 +696,7 @@ document.getElementById("bundleSave").textContent = "Экономия " + fmt(fu
 document.getElementById("tiers").innerHTML =
   tierKeys.map(k => `<div class="tier"><b>-${CONFIG.tiers[k]}%</b><span>за ${k} ${word(k)}</span></div>`).join("");
 document.getElementById("steps").innerHTML = [1, ...tierKeys].map(k =>
-  `<div class="step" data-k="${k}"><b>${k}</b>${CONFIG.tiers[k] ? "-" + CONFIG.tiers[k] + "%" : "без скидки"}</div>`).join("");
+  `<div class="step" data-k="${k}"><span>${k} ${word(k)}</span><b>${CONFIG.tiers[k] ? CONFIG.tiers[k] + "%" : "без скидки"}</b></div>`).join("");
 document.getElementById("faqTiers").textContent =
   "Скидка зависит от того, сколько интенсивов вы берёте: " +
   tierKeys.map(k => `${k} ${word(k)}: -${CONFIG.tiers[k]}%`).join(", ") +
@@ -708,7 +717,7 @@ itemsEl.innerHTML = CONFIG.intensives.map(i => `
         <button data-id="${i.id}" data-v="self">«Я сам»<small>${fmt(P.self)}</small></button>
         <button data-id="${i.id}" data-v="support">С поддержкой<small>${fmt(P.support)}</small></button>
       </div>
-      <p class="seg-note"><b>«Я сам»:</b> практикум, видеоуроки, запись, доступ 3 месяца. <b>С поддержкой:</b> всё то же, плюс встреча с куратором в четверг, чат мини-группы, нейрокуратор, доступ 6 месяцев.</p>
+      <p class="seg-note"><b>«Я сам»:</b> практикум, видеоуроки, запись, доступ 3 месяца. <b>С поддержкой:</b> всё то же, плюс встречи с кураторами в понедельник и четверг, чат мини-группы, нейрокуратор, доступ 6 месяцев.</p>
     </div>
   </div>`).join("");
 itemsEl.addEventListener("click", e => {
@@ -718,16 +727,16 @@ itemsEl.addEventListener("click", e => {
 
 const extrasEl = document.getElementById("extras");
 extrasEl.innerHTML = CONFIG.courses.map(c => `
-  <button class="extra" id="course-${c.id}" data-c="${c.id}" aria-pressed="false">
+  <div class="extra" id="course-${c.id}">
     <span class="extra-img"><img src="${abs(c.img)}" alt=""></span>
-    <span>
+    <div class="extra-body">
       <h4>${c.title}</h4>
-      <div class="ep"><s>${c.from ? "от " : ""}${fmt(c.price)}</s><b>${c.from ? "от " : ""}${fmt(cPrice(c))}</b></div>
-      <span class="tag">-${CONFIG.courseDiscount}% · добавить</span>
-    </span>
-  </button>`).join("");
+      <div class="ep"><span class="off">-${CONFIG.courseDiscount}%</span><s>${c.from ? "от " : ""}${fmt(c.price)}</s><b>${c.from ? "от " : ""}${fmt(cPrice(c))}</b></div>
+      <button class="btn btn-yellow add" data-c="${c.id}" aria-pressed="false">Добавить</button>
+    </div>
+  </div>`).join("");
 extrasEl.addEventListener("click", e => {
-  const b = e.target.closest(".extra"); if (!b) return;
+  const b = e.target.closest(".add"); if (!b) return;
   state.courses[b.dataset.c] = !state.courses[b.dataset.c]; render();
 });
 
@@ -769,8 +778,8 @@ function render(){
   CONFIG.courses.forEach(c => {
     const on = !!state.courses[c.id];
     const el = document.getElementById("course-" + c.id);
-    el.classList.toggle("on", on); el.setAttribute("aria-pressed", on);
-    el.querySelector(".tag").textContent = on ? "В наборе ✓" : `-${CONFIG.courseDiscount}% · добавить`;
+    el.classList.toggle("on", on);
+    const ab = el.querySelector(".add"); ab.textContent = on ? "✓ В наборе" : "Добавить"; ab.setAttribute("aria-pressed", on);
     if (on) {
       cCount++; cSum += cPrice(c); cFull += c.price;
       lines.push({ name: c.title + ` -${CONFIG.courseDiscount}%`, price: (c.from ? "от " : "") + fmt(cPrice(c)), cls: first && lines.length ? "sep" : "" });
@@ -783,7 +792,8 @@ function render(){
   document.getElementById("lines").innerHTML = lines.length
     ? lines.map(l => `<li class="${l.cls || ""}"><span>${l.name}</span><span>${l.price}</span></li>`).join("")
     : `<li class="sum-empty">Нажмите «Хочу» на интенсиве или выберите формат здесь</li>`;
-  document.getElementById("total").textContent = (anyFrom ? "от " : "") + fmt(total);
+  document.getElementById("total").textContent = total ? (anyFrom ? "от " : "") + fmt(total) : "выберите интенсив";
+  document.getElementById("total").classList.toggle("empty", !total);
   document.getElementById("totalOld").textContent = saved > 0 ? fmt(full) : "";
   const ss = document.getElementById("sumSave");
   ss.textContent = saved > 0 ? "Ваша выгода " + fmt(saved) : ""; ss.classList.toggle("show", saved > 0);
